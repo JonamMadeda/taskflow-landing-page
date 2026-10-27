@@ -1,0 +1,203 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #FFFFFF;
+  --color-base: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-raised: #F1F5F9;
+  --color-line: #E2E8F0;
+  --color-primary: #0F172A;
+  --color-muted: #475569;
+  --color-dim: #64748B;
+  --color-indigo-glow: #6366F1;
+  --color-indigo-soft: #4F46E5;
+  --color-mint: #10B981;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+body {
+  background-color: #ffffff;
+  color: #0f172a;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(99, 102, 241, 0.2);
+}
+
+/* ---------- background decor ---------- */
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(15, 23, 42, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(ellipse 85% 65% at 50% 0%, black 35%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 65% at 50% 0%, black 35%, transparent 100%);
+}
+
+.glow-orb {
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+/* ---------- buttons / cards ---------- */
+
+.btn-primary {
+  background: linear-gradient(135deg, #818cf8 0%, #6366f1 45%, #4f46e5 100%);
+  box-shadow:
+    0 10px 28px -12px rgba(79, 70, 229, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow:
+    0 16px 38px -12px rgba(79, 70, 229, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-ghost {
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.btn-ghost:hover {
+  transform: translateY(-2px);
+  border-color: rgba(99, 102, 241, 0.35);
+  background: #eef2ff;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 0 24px 46px -30px rgba(79, 70, 229, 0.5);
+}
+
+/* ---------- phone mockup (depicts the real dark app UI) ---------- */
+
+.phone-frame {
+  background: linear-gradient(155deg, #283449 0%, #161f31 35%, #0c1322 100%);
+  box-shadow:
+    0 40px 90px -35px rgba(79, 70, 229, 0.55),
+    0 0 0 1px rgba(15, 23, 42, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.phone-screen {
+  background: linear-gradient(150deg, #111c33 0%, #0f172a 55%, #0b1120 100%);
+}
+
+.phone-notch {
+  background: #05080f;
+  box-shadow: inset 0 -1px 0 rgba(148, 163, 184, 0.12);
+}
+
+.mock-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.mock-scroll::-webkit-scrollbar-thumb {
+  background: #2a3852;
+  border-radius: 8px;
+}
+.mock-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---------- animation ---------- */
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+@keyframes float-y-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.45);
+  }
+  50% {
+    opacity: 0.65;
+    box-shadow: 0 0 0 5px rgba(16, 185, 129, 0);
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes draw-ring {
+  from {
+    stroke-dashoffset: 176;
+  }
+}
+
+.animate-float-y {
+  animation: float-y 7s ease-in-out infinite;
+}
+.animate-float-y-slow {
+  animation: float-y-slow 8s ease-in-out infinite;
+}
+.live-dot {
+  animation: pulse-dot 1.8s ease-in-out infinite;
+}
+.rise {
+  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.ring-progress {
+  animation: draw-ring 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-y,
+  .animate-float-y-slow,
+  .live-dot,
+  .rise,
+  .ring-progress {
+    animation: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ---------- faq ---------- */
+
+.faq-icon {
+  transition: transform 0.25s ease;
+}
